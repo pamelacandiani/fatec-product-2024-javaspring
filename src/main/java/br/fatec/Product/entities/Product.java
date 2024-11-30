@@ -1,4 +1,4 @@
-package br.fatec.Product.entities;
+package br.fatec.product.entities;
 
 import java.io.Serializable;
 
