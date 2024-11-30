@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.fatec.product.entities.Product;
 import br.fatec.product.repositories.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ProductService {
@@ -16,6 +17,13 @@ public class ProductService {
 
     public List<Product> getAllProducts(){
         return repository.findAll();
+    }
+
+
+    public Product getProductById(Long id){
+        return repository.findById(id).orElseThrow(
+            () -> new EntityNotFoundException("Produto não cadastrado")
+        );
     }
 
 }
