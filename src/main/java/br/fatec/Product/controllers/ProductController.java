@@ -40,15 +40,18 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping
+    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
+        Product newProduct = service.save(product);
+        return ResponseEntity.created(null).body(newProduct);
+    }
+
+     
     @PutMapping("{id}")
     public ResponseEntity<Void> updateProduct(@PathVariable long id, @RequestBody Product product){
         service.update(product, id);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
-        Product newProduct = service.save(product);
-        return ResponseEntity.created(null).body(newProduct);
-    }
+   
 }
