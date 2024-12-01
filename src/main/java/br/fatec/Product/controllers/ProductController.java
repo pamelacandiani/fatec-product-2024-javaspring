@@ -45,7 +45,6 @@ public class ProductController {
         Product newProduct = service.save(product);
         return ResponseEntity.created(null).body(newProduct);
     }
-
      
     @PutMapping("{id}")
     public ResponseEntity<Void> updateProduct(@PathVariable long id, @RequestBody Product product){
