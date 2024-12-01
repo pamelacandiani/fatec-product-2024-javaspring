@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,13 +43,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponse> saveProduct(@RequestBody ProductRequest product){
+    public ResponseEntity<ProductResponse> saveProduct(@Validated @RequestBody ProductRequest product){
         ProductResponse newProduct = service.save(product);
         return ResponseEntity.created(null).body(newProduct);
     }
      
     @PutMapping("{id}")
-    public ResponseEntity<Void> updateProduct(@PathVariable long id, @RequestBody ProductRequest product){
+    public ResponseEntity<Void> updateProduct(@PathVariable long id, @Validated @RequestBody ProductRequest product){
         service.update(product, id);
         return ResponseEntity.ok().build();
     }
