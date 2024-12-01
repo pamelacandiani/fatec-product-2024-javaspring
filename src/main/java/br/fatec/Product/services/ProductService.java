@@ -19,11 +19,19 @@ public class ProductService {
         return repository.findAll();
     }
 
-
     public Product getProductById(Long id){
         return repository.findById(id).orElseThrow(
             () -> new EntityNotFoundException("Produto não cadastrado")
         );
+    }
+
+    public void delete(Long id){
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        }
+        else{
+            throw new EntityNotFoundException("Produto não cadastrado");
+        }
     }
 
 }
